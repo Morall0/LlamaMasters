@@ -3,3 +3,6 @@ Proyecto 1 de Programación orientada a objetos. Es un sistema de fórmula 1.
 
 # OBJETIVO
 Que el alumno conozca los principales aspectos teóricos y prácticos de las colecciones y sus aplicaciones en el lenguaje de programación java, así mismo que ponga en práctica los conceptos básicos de la programación orientada a objetos.
+
+# Cosas a hacer
+Hacer la investigación, primordialmente de los elementos: Set, Queue, List, y HashTable
