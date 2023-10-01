@@ -11,12 +11,13 @@ public class Equipo{
         setNombre(nombre);
     }
     
-    void addPiloto(Piloto piloto){
+    public void addPiloto(Piloto piloto){
         pilotos.add(piloto);
+        Piloto.addPiloto(piloto); // Añadiendo al total de pilotos en la Clase Piloto
     }
     
-    void removePiloto(String eleccion){
-        Iterator<Piloto> iterador = pilotos.iterator;
+    public void removePiloto(String eleccion){
+        Iterator<Piloto> iterador = pilotos.iterator();
         while(iterador.hasNext()){
            Piloto piloto = iterador.next();
            if(piloto.getNombre().equals(eleccion)){
@@ -26,11 +27,11 @@ public class Equipo{
         }
     }
     
-    void sumarPuntos(int puntosASumar){
+    public void sumarPuntos(int puntosASumar){
         setPuntos(this.puntos + puntosASumar);
     }
     
-    void sumarCamp(){
+    public void sumarCamp(){
         setCamp_Ganados((short)(this.camp_Ganados + 1));
     }
 
@@ -42,11 +43,11 @@ public class Equipo{
         this.nombre = nombre;
     }
 
-    public LinkedList<Piloto> getPilotos() {
-        return pilotos;
+    public HashSet<Piloto> getPilotos() {
+        return this.pilotos;
     }
 
-    public void setPilotos(LinkedList<Piloto> pilotos) {
+    public void setPilotos(HashSet<Piloto> pilotos) {
         this.pilotos = pilotos;
     }
 

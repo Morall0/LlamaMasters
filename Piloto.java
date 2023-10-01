@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 public class Piloto{
+
+    public static ArrayList<Piloto> totalPilotos = new ArrayList<Piloto>();
     private String nombre;
     private int edad;
     private String nacionalidad;
@@ -6,6 +9,7 @@ public class Piloto{
     private short victorias;
     private short puntos;
     private byte posicion;
+
 
     public Piloto(String nombre, int edad, String nacionalidad, String carro) {
         setNombre(nombre);
@@ -22,8 +26,24 @@ public class Piloto{
         setVictorias(victorias);
         setPuntos(puntos);
     }
-    
-    
+
+    public static void addPiloto(Piloto piloto) {
+        totalPilotos.add(piloto); 
+    }
+
+    public static void sortPilotos() {
+        int n = totalPilotos.size();
+        int j;
+        for (int i = 0; i<n; i++) {
+            Piloto index = totalPilotos.get(i);
+            j = i-1;
+            while (j>=0 && totalPilotos.get(j).getPuntos() > index.getPuntos()) {
+                totalPilotos.set(j+1, totalPilotos.get(j));
+                j--;
+            }
+            totalPilotos.set(j+1, index);
+        }
+    }
 
     public String getNombre() {
         return nombre;
@@ -81,11 +101,11 @@ public class Piloto{
         this.posicion = posicion;
     }
     
-    void sumarPuntos(short cantidad){
+    public void sumarPuntos(short cantidad){
         setPuntos((short)(this.puntos + cantidad));
     }
     
-    void sumarVictorias(){
+    public void sumarVictorias(){
         setVictorias((short)(this.victorias + 1));
     }
 }

@@ -1,18 +1,28 @@
-
 import java.util.LinkedList;
 import java.util.Random;
+import java.time.LocalDate;
 
 public class Carrera {
-	
-	private LinkedList<Piloto> corredores = new LinkedList()<>;
+	private LinkedList<Piloto> corredores;
 	private Circuito pista;
+    private LocalDate fecha;
+    private long digFecha;
 
 	// Constructores
-	
-	public Carrera (LinkedList<Piloto> corredores, Circuito pista) {
+    	
+	public Carrera (LinkedList<Piloto> corredores, Circuito pista, int dia, int mes, int anio) {
 		setCorredores(corredores);
 		setPista(pista); 
+        setFecha(dia, mes, anio);
+        concatFechaLong(dia, mes,anio);
 	}
+
+    public void concatFechaLong(int dia, int mes, int anio) {
+        String a = String.valueOf(anio);
+        String m = String.valueOf(mes);
+        String d = String.valueOf(dia);
+        digFecha = Long.parseLong(a+m+d);
+    }
 
 	// public Carrera (Circuito pista) {
 	// 	setPista(pista);
@@ -21,9 +31,7 @@ public class Carrera {
 	// métodos extra
 	
 	public void iniciarCarrrera() {
-
 		generarPosiciones();
-
 		int cantidadVueltas = getPista().getVueltas();
 		for(int j = 0; j < cantidadVueltas; j++) {
 			generarPosiciones();
@@ -56,7 +64,7 @@ public class Carrera {
 
 	public void imprimirPosiciones() {
 		for(int j = 0; j < this.corredores.size(); j++) {
-			String nombre = this.corredores.get(j).getNombre;
+			String nombre = this.corredores.get(j).getNombre();
 			System.out.printf("Posición [%d]: %s\n", j + 1, nombre);
 		}
 		System.out.println();
@@ -77,6 +85,14 @@ public class Carrera {
 		return this.pista;
 	}
 
+    public LocalDate getFecha() {
+        return this.fecha;
+    } 
+
+    public long getDigFecha() {
+        return this.digFecha;
+    } 
+
 	// setters
 	
 	// public void setCorredores(Piloto corredor) {
@@ -90,6 +106,10 @@ public class Carrera {
 	public void setPista(Circuito pista) {
 		this.pista = pista;
 	}
+    
+    public void setFecha(int dia, int mes, int anio) {
+        this.fecha = LocalDate.of(anio, mes, dia);
+    }
 
 	public void generarPosiciones() {
 		int[] posiciones = new int[this.corredores.size()];
@@ -105,10 +125,18 @@ public class Carrera {
 				posicion = rand.nextInt(posiciones.length);
 			} while(posiciones[posicion] != 0);
 
-			this.corredores.get(j).setPosicion(posiciones[posicion]);
+			this.corredores.get(j).setPosicion((byte) posiciones[posicion]);
 			posiciones[posicion] = 0;
 		}
 
 		reposicionarPilotos();
 	}
+
+    public String fechaToString() {
+        int dia = this.fecha.getDayOfMonth(); 
+        int mes = this.fecha.getMonthValue(); 
+        int anio = this.fecha.getYear(); 
+
+        return dia+"-"+mes+"-"+anio;
+    }
 }

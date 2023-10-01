@@ -16,12 +16,12 @@ public class Circuito {
 		setLocacion(locacion);
 		setTipo(tipo);
 		setKilometros(kilometros);
-		setVueltas(1);
+		setVueltas((short)1);
 		setCurvas(curvas);
 	}
 
 	public Circuito(String nombre, String locacion, String tipo, short kilometros, short vueltas, short curvas) {
-		setNombres(nombre);
+		setNombre(nombre);
 		setLocacion(locacion);
 		setTipo(tipo);
 		setKilometros(kilometros);
