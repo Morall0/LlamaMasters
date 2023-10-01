@@ -1,19 +1,29 @@
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class Equipo{
     private String nombre;
-    private LinkedList<Piloto> pilotos = new LinkedList<>();
-    private int puntos;
-    private short camp_Ganados;
+    private HashSet<Piloto> pilotos = new HashSet<>();
+    private int puntos=0;
+    private short camp_Ganados=0;
+    
+    public Equipo(String nombre){
+        setNombre(nombre);
+    }
     
     void addPiloto(Piloto piloto){
         pilotos.add(piloto);
     }
     
-    void removePiloto(int eleccion){
-        /* Dependiendo de cómo manejemos la búsqueda de Piloto,
-           añadiremos la lógica pertinente.
-        */
+    void removePiloto(String eleccion){
+        Iterator<Piloto> iterador = pilotos.iterator;
+        while(iterador.hasNext()){
+           Piloto piloto = iterador.next();
+           if(piloto.getNombre().equals(eleccion)){
+               pilotos.remove(piloto);
+               break;
+           }
+        }
     }
     
     void sumarPuntos(int puntosASumar){
