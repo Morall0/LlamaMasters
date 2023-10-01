@@ -1,3 +1,5 @@
+package POOProyecto1;
+
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -128,6 +130,7 @@ public class Main{
                     }
 
                     campeonato = new Campeonato(premio, teamsAL, carreras);
+                    campeonato.iniciarCampeonato();
 
                     break;
                 case 2:

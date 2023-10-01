@@ -1,3 +1,4 @@
+package POOProyecto1;
 
 public class Circuito {
 

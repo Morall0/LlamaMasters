@@ -1,3 +1,5 @@
+package POOProyecto1;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 // import java.util.Collection;
@@ -18,7 +20,7 @@ public class Campeonato {
         setCarreras(carreras);
     }
 
-    public void iniciarCampeonato(LocalDate[] fechas) {
+    public void iniciarCampeonato() {
         int i=1; 
         LinkedList<Carrera> listaCarreras = new LinkedList<Carrera>(carreras.values());
         sortCarreras(listaCarreras);
@@ -33,6 +35,10 @@ public class Campeonato {
     public void sumarPuntosEquipo() {
         for(int j = 0; j < this.equipos.size(); j ++) {
             this.equipos.get(j).sumarPuntos();
+        }
+        System.out.println("LOS EQUIPOS TIENEN ESTA CANTIDAD DE PUNTOS: ");
+        for(Equipo e : this.equipos){
+            System.out.println(e.getNombre() + ": " + e.getPuntos());
         }
     }
 

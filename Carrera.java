@@ -1,6 +1,9 @@
+package POOProyecto1;
+
 import java.util.LinkedList;
 import java.util.Random;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Carrera {
 	private LinkedList<Piloto> corredores;
@@ -54,6 +57,7 @@ public class Carrera {
 			}
 
 		}
+                darPuntos();
 	}
 	
 	
@@ -136,13 +140,16 @@ public class Carrera {
 
 		for(int j = 0; j < posiciones.length; j++) {
 			posiciones[j] = j + 1;
+                        //System.out.println("J = " + j);
+                        //System.out.println("POSICIONES = " + Arrays.toString(posiciones));
 		}
 
 		for(int j = 0; j < this.corredores.size(); j++) {
 			int posicion;
 			do {
 				posicion = rand.nextInt(posiciones.length);
-			} while(posiciones[posicion] != 0);
+                                //System.out.println("POSICION = " + posicion);
+			} while(posiciones[posicion] == 0);
 
 			this.corredores.get(j).setPosicion((byte) posiciones[posicion]);
 			posiciones[posicion] = 0;
