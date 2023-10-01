@@ -28,7 +28,7 @@ public class Equipo{
     }
     
     public void listarPilotos(){
-        Iterator<Piloto> iterador = pilotos.iterator;
+        Iterator<Piloto> iterador = pilotos.iterator();
         while(iterador.hasNext()){
             Piloto piloto = iterador.next();
             System.out.println("NOMBRE: " + piloto.getNombre());
@@ -40,8 +40,10 @@ public class Equipo{
         }
     }
     
-    public void sumarPuntos(int puntosASumar){
-        setPuntos(this.puntos + puntosASumar);
+    public void sumarPuntos(){
+        for(Piloto corredor : pilotos) {
+            this.puntos += corredor.getPuntos();
+        }
     }
     
     public void sumarCamp(){
@@ -79,6 +81,4 @@ public class Equipo{
     public void setCamp_Ganados(short camp_Ganados) {
         this.camp_Ganados = camp_Ganados;
     }
-    
-    
 }

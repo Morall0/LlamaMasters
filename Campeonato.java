@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Collection;
-import java.util.List;
+// import java.util.Collection;
+// import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.time.LocalDate; 
-import java.util.Enumeration;
+// import java.util.Enumeration;
 
 public class Campeonato {
     private String premio; 
@@ -26,6 +26,13 @@ public class Campeonato {
         for (Carrera c : listaCarreras) {
             System.out.println("Carrera numero "+(i++)); 
             c.iniciarCarrrera();
+            sumarPuntosEquipo();
+        }
+    }
+
+    public void sumarPuntosEquipo() {
+        for(int j = 0; j < this.equipos.size(); j ++) {
+            this.equipos.get(j).sumarPuntos();
         }
     }
 

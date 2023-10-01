@@ -1,97 +1,141 @@
-
 import java.util.Scanner;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.HashSet;
 
 public class Main{
+    static Scanner scan = new Scanner(System.in);
     static void printFirstMenu(){
-        System.out.println("QUE DESEA HACER DURANTE ESTA CORRIDA?");
-        System.out.println("1. INICIAR CAMPEONATO");
-        System.out.println("2. VER RESULTADOS DEL CAMPEONATO ANTERIOR");
-        System.out.println("3. SALIR DEL PROGRAMA");
+        System.out.println("\nQUE DESEA HACER DURANTE ESTA EJECUCION?");
+        System.out.println("1. Iniciar Campeonato");
+        System.out.println("2. Ver");
+        System.out.println("3. Salir del programa");
     }
     
-    static Piloto scanPilotData(int i){ //Método de lectura de pilotos
-        Scanner scanMan2 = new Scanner(System.in);
+    static Piloto scanPilotData(){ //Metodo de lectura de pilotos
         String nombreP, nacionalidadP, carroP;
         int edadP;
         
-        System.out.println("PILOTO NUMERO " + (i+1) + ":");
-        System.out.println("INTRODUZCA EL NOMBRE DEL PILOTO");
-        nombreP = scanMan2.nextLine();
-        System.out.println("INTRODUZCA LA EDAD DEL PILOTO");
-        edadP = scanMan2.nextInt();
-        System.out.println("INTRODUZCA LA NACIONALIDAD DEL PILOTO");
-        nacionalidadP = scanMan2.nextLine();
-        System.out.println("INTRODUZCA EL CARRO DEL PILOTO");
-        carroP = scanMan2.nextLine();
+        System.out.println("Introduzca el NOMBRE DEL PILOTO");
+        nombreP = scan.nextLine();
+        System.out.println("Introduzca la EDAD DEL PILOTO");
+        edadP = scan.nextInt();
+        scan.nextLine();
+        System.out.println("Introduzca la NACIONALIDAD DEL PILOTO");
+        nacionalidadP = scan.nextLine();
+        System.out.println("Introduzca el CARRO DEL PILOTO");
+        carroP = scan.nextLine();
         
         Piloto newPilot = new Piloto(nombreP, edadP, nacionalidadP, carroP);
         
         return newPilot;
     }
     
+    //TODO: Completar metodo
     static Circuito scanCircuitData(){
-        Scanner scanMan3 = new Scanner(System.in);
         String nombreC, locacionC, tipoC;
         short kilometrosC, vueltasC, curvasC;
-        System.out.println("INTRODUZCA EL NOMBRE DEL CIRCUITO");
-        
+
+        System.out.println("Datos del CIRCUITO");
+        System.out.println("Nombre: ");
+        nombreC = scan.nextLine();
+        System.out.println("Locacion: ");
+        locacionC = scan.nextLine();
+        System.out.println("Tipo: ");
+        tipoC = scan.nextLine();
+        System.out.println("Kilometros: ");
+        kilometrosC = scan.nextShort();
+        System.out.println("Vueltas: ");
+        vueltasC = scan.nextShort();
+        System.out.println("Curvas: ");
+        curvasC = scan.nextShort();
+
+        return new Circuito(nombreC, locacionC, tipoC, kilometrosC, vueltasC, curvasC);
     }
     
-    static Carrera scanRaceData(int i){
-        System.out.println("CARRERA NUMERO " + i);
-        System.out.println("INTRODUZCA ");
+    //TODO: Completar metodo
+    static Carrera scanRaceData(){
+        Circuito circuito;
+        LinkedList<Piloto> listaPilotos = new LinkedList<>(Piloto.totalPilotos);
+
+        int dia, mes, anio;
+        System.out.println("Introduzca la fecha de la carrera");
+        System.out.print("Dia: ");
+        dia = scan.nextInt();
+        System.out.print("Mes: ");
+        mes = scan.nextInt();
+        System.out.print("AÃ±o: ");
+        anio = scan.nextInt();
+        scan.nextLine();
+        circuito = scanCircuitData();
+
+        return new Carrera(listaPilotos, circuito, dia, mes, anio);
     }
     
     public static void main(String[] args) {
-        Scanner scanMan = new Scanner(System.in);
-        int userSelection1, userSelection2, userSelection3;
-        String teamName;
-        ArrayList<Equipo> auxiliary_TeamAL = new ArrayList<>();
+        int opMain, nEquipos, nPilotos, nCarreras;
+        String teamName, premio;
+        Campeonato campeonato;
+        ArrayList<Equipo> teamsAL = new ArrayList<>();
         // Lista auxiliar para guardar a todos los equipos registrados, para
         // entonces adjuntarlos al Campeonato.
         
         System.out.println("BIENVENIDO AL SIMULADOR DE CARRERAS DE LA F1!");
         do{
             printFirstMenu();
-            userSelection1 = scanMan.nextInt();
-            switch(userSelection1){
+            opMain = scan.nextInt();
+            scan.nextLine();
+            switch(opMain){
                 case 1:
                     
-                    /* Se anidan dos ciclos for en los que se introducirán todos
-                    los equipos que van a haber en el campeonato, así como los
+                    /* Se anidan dos ciclos for en los que se introduciran todos
+                    los equipos que van a haber en el campeonato, asi como los
                     pilotos que los conforman a todos.
                     */
-                    System.out.println("CUANTOS EQUIPOS PARTICIPARÁN EN LA"
-                            + " CARRERA?");
-                    userSelection2 = scanMan.nextInt();
-                    for(int i = 0;i<userSelection2;i++){
-                        System.out.println("INTRODUZCA EL NOMBRE DEL EQUIPO"
-                                + " NUMERO " + i);
-                        teamName = scanMan.nextLine();
+                    System.out.println("Cual sera el PREMIO del campeonato?");
+                    premio = scan.nextLine();
+                    System.out.println("CUANTOS EQUIPOS participaran en el campeonato?");
+                    nEquipos = scan.nextInt();
+                    scan.nextLine();
+
+                    for(int i = 0;i<nEquipos;i++){
+                        System.out.println("\nIntroduzca el NOMBRE DEL EQUIPO numero " + (i+1));
+                        teamName = scan.nextLine();
                         Equipo arbTeam = new Equipo(teamName);
-                        System.out.println("INTRODUZCA EL NÚMERO DE PILOTOS "
-                                + "EN ESTE EQUIPO.");
-                        userSelection3 = scanMan.nextInt();
-                        for(int j = 0;j<userSelection3;j++){
-                            Piloto arbPilot = scanPilotData(j);
+
+                        System.out.println("Introduzca el NUMERO DE PILOTOS del equipo.");
+                        nPilotos = scan.nextInt();
+                        scan.nextLine();
+                        for(int j = 0;j<nPilotos;j++){
+                            System.out.println("\nPiloto numero "+(j+1)+":");
+                            Piloto arbPilot = scanPilotData();
                             arbTeam.addPiloto(arbPilot);
                         }
-                        auxiliary_TeamAL.add(arbTeam);
+
+                        teamsAL.add(arbTeam);
                     }
-                    System.out.println("INTRODUZCA EL NÚMERO DE CARRERAS QUE "
-                            + "SE CORRERÁN EN ESTE CAMPEONATO.");
-                    userSelection2 = scanMan.nextInt();
-                    for(int i=0;i<userSelection2;i++){
-                        
+
+                    System.out.println("Introduzca el NUMERO DE CARRERAS que habra en el CAMPEONATO.");
+                    nCarreras = scan.nextInt();
+                    scan.nextLine();
+                    HashMap<LocalDate, Carrera> carreras = new HashMap<>();
+                    for(int i=0;i<nCarreras;i++){
+                        System.out.println("\nCarrera numero "+(i+1));
+                        Carrera carrera = scanRaceData();
+                        carreras.put(carrera.getFecha(), carrera);
                     }
-                    
-                    
-                    
-                    
+
+                    campeonato = new Campeonato(premio, teamsAL, carreras);
+
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    System.out.println("\nSaliendo...");
             }
-        }while(userSelection1 != 3);
+        }while(opMain != 3);
+        scan.close();
     }
 }

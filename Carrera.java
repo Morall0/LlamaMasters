@@ -21,7 +21,16 @@ public class Carrera {
         String a = String.valueOf(anio);
         String m = String.valueOf(mes);
         String d = String.valueOf(dia);
-        digFecha = Long.parseLong(a+m+d);
+
+		if(dia < 10){
+			d = "0" + d;
+		}
+
+		if(mes < 10) {
+			m = "0" + m;
+		}
+
+        this.digFecha = Long.parseLong(a+m+d);
     }
 
 	// public Carrera (Circuito pista) {
@@ -68,6 +77,16 @@ public class Carrera {
 			System.out.printf("Posición [%d]: %s\n", j + 1, nombre);
 		}
 		System.out.println();
+	}
+
+	public void darPuntos() {
+
+		this.corredores.getFirst().sumarVictorias();
+
+		for(int j = 0; j < this.corredores.size(); j++) {
+			int puntos = this.corredores.size() - j;
+			this.corredores.get(j).sumarPuntos((short) puntos);
+		}
 	}
 
 	// getters
