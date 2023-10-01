@@ -27,6 +27,19 @@ public class Equipo{
         }
     }
     
+    public void listarPilotos(){
+        Iterator<Piloto> iterador = pilotos.iterator;
+        while(iterador.hasNext()){
+            Piloto piloto = iterador.next();
+            System.out.println("NOMBRE: " + piloto.getNombre());
+            System.out.println("EDAD: " + piloto.getEdad());
+            System.out.println("NACIONALIDAD: " + piloto.getNacionalidad());
+            System.out.println("CARRO: " + piloto.getCarro());
+            System.out.println("VICTORIAS: " + piloto.getVictorias());
+            System.out.println("PUNTOS: " + piloto.getPuntos());
+        }
+    }
+    
     public void sumarPuntos(int puntosASumar){
         setPuntos(this.puntos + puntosASumar);
     }

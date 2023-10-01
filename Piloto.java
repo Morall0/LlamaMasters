@@ -16,6 +16,9 @@ public class Piloto{
         setEdad(edad);
         setNacionalidad(nacionalidad);
         setCarro(carro);
+        setVictorias((short)0);
+        setPuntos((short)0);
+        
     }
 
     public Piloto(String nombre, int edad, String nacionalidad, String carro, short victorias, short puntos) {
