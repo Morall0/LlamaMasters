@@ -41,9 +41,12 @@ public class Equipo{
     }
     
     public void sumarPuntos(){
+        int puntosExtra = 0;
         for(Piloto corredor : pilotos) {
-            this.puntos += corredor.getPuntos();
+            puntosExtra += corredor.getPuntos();
         }
+
+        this.puntos += puntosExtra - this.puntos;
     }
     
     public void sumarCamp(){
