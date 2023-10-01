@@ -12,7 +12,7 @@ public class Circuito {
 	// Constructores
 	
 	public Circuito(String nombre, String locacion, String tipo, short kilometros, short curvas) {
-		setNombres(nombre);
+		setNombre(nombre);
 		setLocacion(locacion);
 		setTipo(tipo);
 		setKilometros(kilometros);
@@ -78,7 +78,7 @@ public class Circuito {
 		this.vueltas = vueltas;
 	}
 
-	public void setCurvas() {
+	public void setCurvas(short curvas) {
 		this.curvas = curvas;
 	}
 
