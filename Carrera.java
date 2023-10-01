@@ -14,13 +14,33 @@ public class Carrera {
 		setPista(pista); 
 	}
 
-	public Carrera (Circuito pista) {
-		setPista(pista);
-	}
+	// public Carrera (Circuito pista) {
+	// 	setPista(pista);
+	// }
 	
 	// métodos extra
 	
-	public void  reposicionarPilotos() {
+	public void iniciarCarrrera() {
+
+		generarPosiciones();
+
+		int cantidadVueltas = getPista().getVueltas();
+		for(int j = 0; j < cantidadVueltas; j++) {
+			generarPosiciones();
+			System.out.printf("Vuelta %d:\n\n", j + 1);
+			imprimirPosiciones();
+
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+	
+	
+	public void reposicionarPilotos() {
 		Piloto[] corredoresAux = new Piloto[this.corredores.size()];
 
 		while(!this.corredores.isEmpty()){
@@ -32,6 +52,14 @@ public class Carrera {
 		for(Piloto corredor : corredoresAux) {
 			this.corredores.add(corredor);
 		}
+	}
+
+	public void imprimirPosiciones() {
+		for(int j = 0; j < this.corredores.size(); j++) {
+			String nombre = this.corredores.get(j).getNombre;
+			System.out.printf("Posición [%d]: %s\n", j + 1, nombre);
+		}
+		System.out.println();
 	}
 
 	// getters
@@ -51,19 +79,19 @@ public class Carrera {
 
 	// setters
 	
-	public void setCorredores(Piloto corredor) {
-		this.corredores.add(corredor);
-	}
+	// public void setCorredores(Piloto corredor) {
+	// 	this.corredores.add(corredor);
+	// }
 
 	public void setCorredores(LinkedList<Piloto> corredores) {
-		this.corredores.addAll(corredores); 
+		this.corredores = new LinkedList<>(corredores); 
 	}
 
 	public void setPista(Circuito pista) {
 		this.pista = pista;
 	}
 
-	public void setPosiciones() {
+	public void generarPosiciones() {
 		int[] posiciones = new int[this.corredores.size()];
 		Random rand = new Random();
 
@@ -80,5 +108,7 @@ public class Carrera {
 			this.corredores.get(j).setPosicion(posiciones[posicion]);
 			posiciones[posicion] = 0;
 		}
+
+		reposicionarPilotos();
 	}
 }
