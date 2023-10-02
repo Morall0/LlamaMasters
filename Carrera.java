@@ -1,14 +1,13 @@
 import java.util.LinkedList;
 import java.util.Random;
 import java.time.LocalDate;
-import java.util.Scanner;
-import java.util.Arrays;
 
 public class Carrera {
 	private LinkedList<Piloto> corredores;
 	private Circuito pista;
     private LocalDate fecha;
     private long digFecha;
+	private boolean realizada;
 
 	// Constructores
     	
@@ -16,10 +15,12 @@ public class Carrera {
 		setCorredores(corredores);
 		setPista(pista); 
         setFecha(dia, mes, anio);
-        concatFechaLong(dia, mes,anio);
+        concatFechaLong(dia,mes,anio);
 	}
+	
+	// métodos extra
 
-    public void concatFechaLong(int dia, int mes, int anio) {
+	public void concatFechaLong(int dia, int mes, int anio) {
         String a = String.valueOf(anio);
         String m = String.valueOf(mes);
         String d = String.valueOf(dia);
@@ -34,22 +35,12 @@ public class Carrera {
 
         this.digFecha = Long.parseLong(a+m+d);
     }
-
-	// public Carrera (Circuito pista) {
-	// 	setPista(pista);
-	// }
-	
-	// métodos extra
 	
 	public void iniciarCarrrera() {
-                String enterKey;
-                Scanner enter = new Scanner(System.in);
-                System.out.println("FECHA: " + this.fechaToString());
-                System.out.println(this.pista.toString());
-                System.out.println("");
-                System.out.println("PRESIONE ENTER CUANDO ESTE LISTO PARA "
-                        + "PROCEDER");
-                enterKey = enter.nextLine();
+		carreraRealizada();
+        System.out.println("FECHA: " + this.fechaToString());
+        System.out.println(this.pista.toString());
+        System.out.println("");
 		generarPosiciones();
 		int cantidadVueltas = getPista().getVueltas();
 		for(int j = 0; j < cantidadVueltas; j++) {
@@ -64,15 +55,14 @@ public class Carrera {
 			}
 
 		}
-                darPuntos();
-                Piloto corredor = this.corredores.getFirst();
-                System.out.println(corredor.getNombre() + " FUE EL GANADOR DE ESTA CARRERA CON "
-                + corredor.getPuntos() + " PUNTOS.");
-                System.out.println("PROVIENE DE " + corredor.getNacionalidad() + ". HIZO ESTO CON EL CARRO " 
-                        + this.corredores.getFirst().getCarro() + " Y TIENE UN TOTAL DE "
+        darPuntos();
+        Piloto corredor = this.corredores.getFirst();
+        System.out.println(corredor.getNombre() + " FUE EL GANADOR DE ESTA CARRERA CON "
+        		+ corredor.getPuntos() + " PUNTOS.");
+        System.out.println("PROVIENE DE " + corredor.getNacionalidad() + ". HIZO ESTO CON EL CARRO " 
+                + this.corredores.getFirst().getCarro() + " Y TIENE UN TOTAL DE "
                 + corredor.getPuntos() + " PUNTOS");
-	}
-	
+	}	
 	
 	public void reposicionarPilotos() {
 		Piloto[] corredoresAux = new Piloto[this.corredores.size()];
@@ -106,47 +96,6 @@ public class Carrera {
 		}
 	}
 
-	// getters
-	
-	public LinkedList<Piloto> getPosiciones() {
-		reposicionarPilotos();
-		return this.corredores;
-	}
-	
-	public LinkedList<Piloto> getCorredores() {
-		return this.corredores;
-	}
-
-	public Circuito getPista() {
-		return this.pista;
-	}
-
-    public LocalDate getFecha() {
-        return this.fecha;
-    } 
-
-    public long getDigFecha() {
-        return this.digFecha;
-    } 
-
-	// setters
-	
-	// public void setCorredores(Piloto corredor) {
-	// 	this.corredores.add(corredor);
-	// }
-
-	public void setCorredores(LinkedList<Piloto> corredores) {
-		this.corredores = new LinkedList<>(corredores); 
-	}
-
-	public void setPista(Circuito pista) {
-		this.pista = pista;
-	}
-    
-    public void setFecha(int dia, int mes, int anio) {
-        this.fecha = LocalDate.of(anio, mes, dia);
-    }
-
 	public void generarPosiciones() {
 		int[] posiciones = new int[this.corredores.size()];
 		Random rand = new Random();
@@ -176,6 +125,51 @@ public class Carrera {
         int mes = this.fecha.getMonthValue(); 
         int anio = this.fecha.getYear(); 
 
-        return dia+"-"+mes+"-"+anio;
+        return dia+"/"+mes+"/"+anio;
+    }
+
+	public void carreraRealizada() {
+		this.realizada = true;
+	}
+
+	// getters
+	
+	public LinkedList<Piloto> getPosiciones() {
+		reposicionarPilotos();
+		return this.corredores;
+	}
+	
+	public LinkedList<Piloto> getCorredores() {
+		return this.corredores;
+	}
+
+	public Circuito getPista() {
+		return this.pista;
+	}
+
+    public LocalDate getFecha() {
+        return this.fecha;
+    } 
+
+    public long getDigFecha() {
+        return this.digFecha;
+    } 
+
+	public boolean getRealizada() {
+		return this.realizada;
+	}
+
+	// setters
+
+	public void setCorredores(LinkedList<Piloto> corredores) {
+		this.corredores = new LinkedList<>(corredores); 
+	}
+
+	public void setPista(Circuito pista) {
+		this.pista = pista;
+	}
+    
+    public void setFecha(int dia, int mes, int anio) {
+        this.fecha = LocalDate.of(anio, mes, dia);
     }
 }

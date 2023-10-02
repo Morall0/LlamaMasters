@@ -10,7 +10,7 @@ public class Main{
     static void printFirstMenu(){
         System.out.println("\nQUE DESEA HACER DURANTE ESTA EJECUCION?");
         System.out.println("1. Iniciar Campeonato");
-        System.out.println("2. Ver carreras");
+        System.out.println("2. Ver carreras anteriores");
         System.out.println("3. Salir del programa");
         System.out.print("Opcion: ");
     }
@@ -75,10 +75,48 @@ public class Main{
         return new Carrera(listaPilotos, circuito, dia, mes, anio);
     }
     
+    public static void listarCarreras(Campeonato camp) {
+        LinkedList<Carrera> listaCarreras = camp.getListaCarreras(camp.getCarreras());
+        camp.sortCarreras(listaCarreras);
+
+        for (Carrera carrera: listaCarreras) {
+            if (carrera.getRealizada()) {
+                System.out.println("\nFecha: "+carrera.fechaToString());
+                System.out.println("Circuito");
+                System.out.println(carrera.getPista().toString());
+                System.out.println("POSICIONES:");
+                carrera.imprimirPosiciones();
+            }
+        }
+    }
+
+    static void verifyRaceDate(HashMap <LocalDate, Carrera> carreras){
+        int dia, mes, anio;
+        System.out.print("Introduzca el dia de la fecha a buscar: ");
+        dia = scan.nextInt();
+        System.out.print("Introduzca el mes de la fecha a buscar: ");
+        mes = scan.nextInt();
+        System.out.print("Introduzca el anio de la fecha a buscar: ");
+        anio = scan.nextInt();
+
+        LocalDate fecha = LocalDate.of(anio, mes, dia);
+        if(carreras.containsKey(fecha)){
+            Carrera carreraArb = carreras.get(fecha);
+            System.out.println("\nFecha: "+carreraArb.fechaToString());
+            System.out.println("Circuito");
+            System.out.println(carreraArb.getPista().toString());
+            System.out.println("POSICIONES:");
+            carreraArb.imprimirPosiciones();
+        } else{
+            System.out.println("La carrera con la fecha mencionada no existe.");
+        }
+        
+    }
+    
     public static void main(String[] args) {
         int opMain, nEquipos, nPilotos, nCarreras;
-        String teamName, premio;
-        Campeonato campeonato;
+        String teamName, premio = "Copa";
+        Campeonato campeonato = new Campeonato(premio);
         ArrayList<Equipo> teamsAL = new ArrayList<>();
         // Lista auxiliar para guardar a todos los equipos registrados, para
         // entonces adjuntarlos al Campeonato.
@@ -98,6 +136,7 @@ public class Main{
                     System.out.println("\nCAMPEONATO!");
                     System.out.println("Cual sera el PREMIO del campeonato?");
                     premio = scan.nextLine();
+                    campeonato.setPremio(premio);
                     System.out.println("\nRegistro de los Equipos");
                     System.out.print("Cantidad de equipos: ");
                     nEquipos = scan.nextInt();
@@ -122,6 +161,7 @@ public class Main{
 
                         teamsAL.add(arbTeam);
                     }
+                    campeonato.setEquipos(teamsAL);
 
                     System.out.print("\nCantidad de CARRERAS DEL CAMPEONATO: ");
                     nCarreras = scan.nextInt();
@@ -132,12 +172,31 @@ public class Main{
                         Carrera carrera = scanRaceData();
                         carreras.put(carrera.getFecha(), carrera);
                     }
+                    campeonato.setCarreras(carreras);
 
-                    campeonato = new Campeonato(premio, teamsAL, carreras);
                     campeonato.iniciarCampeonato();
                     break;
 
                 case 2:
+                    if (campeonato.getCarreras() == null) {
+                        System.out.println("El campeonato no ha empezado");
+                        break;
+                    }
+
+                    int opt;
+                    System.out.println("Ver carrera por: ");
+                    System.out.println("1. Fecha");
+                    System.out.println("2. Lista de Carreras corridas");
+                    System.out.print("Opcion: "); 
+                    opt = scan.nextInt();
+                    System.out.println(opt);
+                    if (opt == 1) {
+                        verifyRaceDate(campeonato.getCarreras());
+                    } else if (opt == 2) {
+                        listarCarreras(campeonato);
+                    } else 
+                        System.out.println("Opcion invalida");
+
                     break;
 
                 case 3:

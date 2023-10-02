@@ -1,11 +1,9 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
-// import java.util.Collection;
-// import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.time.LocalDate; 
-// import java.util.Enumeration;
+import java.util.Scanner;
 
 public class Campeonato {
     private String premio; 
@@ -18,16 +16,31 @@ public class Campeonato {
         setCarreras(carreras);
     }
 
-    public void iniciarCampeonato() {
-        int i=1; 
-        LinkedList<Carrera> listaCarreras = new LinkedList<Carrera>(carreras.values());
-        sortCarreras(listaCarreras);
+    public Campeonato(String premio) {
+        this.premio = premio;
+    }
 
+    public void iniciarCampeonato() {
+        int j = 1;
+        LinkedList<Carrera> listaCarreras = getListaCarreras(carreras);
+        sortCarreras(listaCarreras);
+        String enterKey;
+
+        Main.scan.nextLine();
         for (Carrera c : listaCarreras) {
-            System.out.println("Carrera numero "+(i++)); 
+            System.out.println("Carrera numero "+ (j++)); 
+            System.out.println("Presione enter para continuar, o escriba 'exit' para salir.");
+            enterKey = Main.scan.nextLine();
+            if(enterKey.equalsIgnoreCase("exit")) {
+                break;
+            }
             c.iniciarCarrrera();
             sumarPuntosEquipo();
         }
+    }
+
+    public LinkedList<Carrera> getListaCarreras(HashMap<LocalDate, Carrera> carrera) {
+        return new LinkedList<Carrera>(carreras.values()); 
     }
 
     public void sumarPuntosEquipo() {
@@ -87,6 +100,10 @@ public class Campeonato {
 
     public ArrayList<Equipo> getEquipos() {
         return this.equipos;
+    }
+
+    public void setPremio(String premio) {
+        this.premio = premio;
     }
 
     public void setEquipos(ArrayList<Equipo> equipos) {
