@@ -51,7 +51,7 @@ public class Carrera {
 			imprimirPosiciones();
 
 			try {
-				Thread.sleep(1000);
+				Thread.sleep((this.pista.getKilometros()*20)+this.pista.getCurvas()/1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
