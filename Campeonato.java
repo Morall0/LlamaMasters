@@ -3,7 +3,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
 import java.time.LocalDate; 
-import java.util.Scanner;
 
 public class Campeonato {
     private String premio; 

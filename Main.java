@@ -3,7 +3,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.HashSet;
 
 public class Main{
     static Scanner scan = new Scanner(System.in);
@@ -34,7 +33,6 @@ public class Main{
         return newPilot;
     }
     
-    //TODO: Completar metodo
     static Circuito scanCircuitData(){
         String nombreC, locacionC, tipoC;
         short kilometrosC, vueltasC, curvasC;
@@ -56,7 +54,6 @@ public class Main{
         return new Circuito(nombreC, locacionC, tipoC, kilometrosC, vueltasC, curvasC);
     }
     
-    //TODO: Completar metodo
     static Carrera scanRaceData(){
         Circuito circuito;
         LinkedList<Piloto> listaPilotos = new LinkedList<>(Piloto.totalPilotos);
@@ -175,6 +172,8 @@ public class Main{
                     campeonato.setCarreras(carreras);
 
                     campeonato.iniciarCampeonato();
+
+                    campeonato.resultados();
                     break;
 
                 case 2:
