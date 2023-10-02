@@ -100,7 +100,7 @@ public class Main{
         anio = scan.nextInt();
 
         LocalDate fecha = LocalDate.of(anio, mes, dia);
-        if(carreras.containsKey(fecha)){
+        if(carreras.containsKey(fecha) && carreras.get(fecha).getRealizada()){
             Carrera carreraArb = carreras.get(fecha);
             System.out.println("\nFecha: "+carreraArb.fechaToString());
             System.out.println("Circuito");
@@ -108,7 +108,7 @@ public class Main{
             System.out.println("POSICIONES:");
             carreraArb.imprimirPosiciones();
         } else{
-            System.out.println("La carrera con la fecha mencionada no existe.");
+            System.out.println("La carrera con la fecha mencionada no existe o no fue realizada.");
         }
         
     }
