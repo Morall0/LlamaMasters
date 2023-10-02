@@ -28,15 +28,18 @@ public class Equipo{
     }
     
     public void listarPilotos(){
+        int i = 1;
         Iterator<Piloto> iterador = pilotos.iterator();
         while(iterador.hasNext()){
             Piloto piloto = iterador.next();
+            System.out.println("*** PILOTO NO. " + i + " ***");
             System.out.println("NOMBRE: " + piloto.getNombre());
             System.out.println("EDAD: " + piloto.getEdad());
             System.out.println("NACIONALIDAD: " + piloto.getNacionalidad());
             System.out.println("CARRO: " + piloto.getCarro());
             System.out.println("VICTORIAS: " + piloto.getVictorias());
             System.out.println("PUNTOS: " + piloto.getPuntos());
+            i++;
         }
     }
     

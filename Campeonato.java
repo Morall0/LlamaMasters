@@ -67,6 +67,11 @@ public class Campeonato {
         for (Piloto p : Piloto.totalPilotos) {
             System.out.println((lugar++)+". "+p.getNombre());
         }    
+        
+        System.out.println("EL EQUIPO QUE GANÓ EL PREMIO " + getPremio() + " ES: "
+                + this.equipos.get(0).getNombre());
+        
+        this.equipos.get(0).listarPilotos();
     }
 
     public void sortGanadores() {
@@ -116,4 +121,9 @@ public class Campeonato {
     public void setCarreras(Map<LocalDate, Carrera> carreras) {
         this.carreras = new HashMap<>(carreras);
     }
+
+    public String getPremio() {
+        return premio;
+    }
+    
 }
