@@ -19,14 +19,14 @@ public class Main{
         String nombreP, nacionalidadP, carroP;
         int edadP;
         
-        System.out.println("Introduzca el NOMBRE DEL PILOTO");
+        System.out.print("Nombre: ");
         nombreP = scan.nextLine();
-        System.out.println("Introduzca la EDAD DEL PILOTO");
+        System.out.print("Edad: ");
         edadP = scan.nextInt();
         scan.nextLine();
-        System.out.println("Introduzca la NACIONALIDAD DEL PILOTO");
+        System.out.print("Nacionalidad: ");
         nacionalidadP = scan.nextLine();
-        System.out.println("Introduzca el CARRO DEL PILOTO");
+        System.out.print("Carro: ");
         carroP = scan.nextLine();
         
         Piloto newPilot = new Piloto(nombreP, edadP, nacionalidadP, carroP);
@@ -39,18 +39,18 @@ public class Main{
         String nombreC, locacionC, tipoC;
         short kilometrosC, vueltasC, curvasC;
 
-        System.out.println("Datos del CIRCUITO");
-        System.out.println("Nombre: ");
+        System.out.println("CIRCUITO");
+        System.out.print("Nombre: ");
         nombreC = scan.nextLine();
-        System.out.println("Locacion: ");
+        System.out.print("Locacion: ");
         locacionC = scan.nextLine();
-        System.out.println("Tipo: ");
+        System.out.print("Tipo: ");
         tipoC = scan.nextLine();
-        System.out.println("Kilometros: ");
+        System.out.print("Kilometros: ");
         kilometrosC = scan.nextShort();
-        System.out.println("Vueltas: ");
+        System.out.print("Vueltas: ");
         vueltasC = scan.nextShort();
-        System.out.println("Curvas: ");
+        System.out.print("Curvas: ");
         curvasC = scan.nextShort();
 
         return new Circuito(nombreC, locacionC, tipoC, kilometrosC, vueltasC, curvasC);
@@ -95,23 +95,27 @@ public class Main{
                     los equipos que van a haber en el campeonato, asi como los
                     pilotos que los conforman a todos.
                     */
-                    System.out.println("CAMPEONATO!");
+                    System.out.println("\nCAMPEONATO!");
                     System.out.println("Cual sera el PREMIO del campeonato?");
                     premio = scan.nextLine();
-                    System.out.println("CUANTOS EQUIPOS participaran en el campeonato?");
+                    System.out.println("\nRegistro de los Equipos");
+                    System.out.print("Cantidad de equipos: ");
                     nEquipos = scan.nextInt();
                     scan.nextLine();
+                    
+                    for(int i = 1;i<=nEquipos;i++){
+                        System.out.println("\n#### EQUIPO " +i+" ####");
 
-                    for(int i = 0;i<nEquipos;i++){
-                        System.out.println("\nIntroduzca el NOMBRE DEL EQUIPO numero " + (i+1));
+                        System.out.print("Nombre del equipo: ");
                         teamName = scan.nextLine();
                         Equipo arbTeam = new Equipo(teamName);
 
-                        System.out.println("Introduzca el NUMERO DE PILOTOS del equipo.");
+                        System.out.print("Cantidad de pilotos: ");
                         nPilotos = scan.nextInt();
                         scan.nextLine();
-                        for(int j = 0;j<nPilotos;j++){
-                            System.out.println("\nPiloto numero "+(j+1)+":");
+
+                        for(int j = 1;j<=nPilotos;j++){
+                            System.out.println("- PILOTO "+j+" -");
                             Piloto arbPilot = scanPilotData();
                             arbTeam.addPiloto(arbPilot);
                         }
@@ -119,27 +123,29 @@ public class Main{
                         teamsAL.add(arbTeam);
                     }
 
-                    System.out.println("Introduzca el NUMERO DE CARRERAS que habra en el CAMPEONATO.");
+                    System.out.print("\nCantidad de CARRERAS DEL CAMPEONATO: ");
                     nCarreras = scan.nextInt();
                     scan.nextLine();
                     HashMap<LocalDate, Carrera> carreras = new HashMap<>();
-                    for(int i=0;i<nCarreras;i++){
-                        System.out.println("\nCarrera numero "+(i+1));
+                    for(int i=1;i<=nCarreras;i++){
+                        System.out.println("\nCarrera numero "+i);
                         Carrera carrera = scanRaceData();
                         carreras.put(carrera.getFecha(), carrera);
                     }
 
                     campeonato = new Campeonato(premio, teamsAL, carreras);
                     campeonato.iniciarCampeonato();
-
                     break;
+
                 case 2:
                     break;
+
                 case 3:
                     System.out.println("\nSaliendo...");
                     break;
+
                 default:
-                    System.out.println("Selecciona una opcion valida!\n");
+                    System.out.println("\nSelecciona una opcion valida!");
                     break;
             }
         }while(opMain != 3);
