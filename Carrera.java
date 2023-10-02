@@ -1,6 +1,7 @@
 import java.util.LinkedList;
 import java.util.Random;
 import java.time.LocalDate;
+import java.util.Scanner;
 import java.util.Arrays;
 
 public class Carrera {
@@ -41,6 +42,14 @@ public class Carrera {
 	// métodos extra
 	
 	public void iniciarCarrrera() {
+                String enterKey;
+                Scanner enter = new Scanner(System.in);
+                System.out.println("FECHA: " + this.fechaToString());
+                System.out.println(this.pista.toString());
+                System.out.println("");
+                System.out.println("PRESIONE ENTER CUANDO ESTE LISTO PARA "
+                        + "PROCEDER");
+                enterKey = enter.nextLine();
 		generarPosiciones();
 		int cantidadVueltas = getPista().getVueltas();
 		for(int j = 0; j < cantidadVueltas; j++) {
@@ -56,6 +65,12 @@ public class Carrera {
 
 		}
                 darPuntos();
+                Piloto corredor = this.corredores.getFirst();
+                System.out.println(corredor.getNombre() + " FUE EL GANADOR DE ESTA CARRERA CON "
+                + corredor.getPuntos() + " PUNTOS.");
+                System.out.println("PROVIENE DE " + corredor.getNacionalidad() + ". HIZO ESTO CON EL CARRO " 
+                        + this.corredores.getFirst().getCarro() + " Y TIENE UN TOTAL DE "
+                + corredor.getPuntos() + " PUNTOS");
 	}
 	
 	
