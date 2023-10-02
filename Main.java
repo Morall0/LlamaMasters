@@ -1,5 +1,3 @@
-package POOProyecto1;
-
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,8 +10,9 @@ public class Main{
     static void printFirstMenu(){
         System.out.println("\nQUE DESEA HACER DURANTE ESTA EJECUCION?");
         System.out.println("1. Iniciar Campeonato");
-        System.out.println("2. Ver");
+        System.out.println("2. Ver carreras");
         System.out.println("3. Salir del programa");
+        System.out.print("Opcion: ");
     }
     
     static Piloto scanPilotData(){ //Metodo de lectura de pilotos
@@ -96,6 +95,7 @@ public class Main{
                     los equipos que van a haber en el campeonato, asi como los
                     pilotos que los conforman a todos.
                     */
+                    System.out.println("CAMPEONATO!");
                     System.out.println("Cual sera el PREMIO del campeonato?");
                     premio = scan.nextLine();
                     System.out.println("CUANTOS EQUIPOS participaran en el campeonato?");
@@ -137,6 +137,10 @@ public class Main{
                     break;
                 case 3:
                     System.out.println("\nSaliendo...");
+                    break;
+                default:
+                    System.out.println("Selecciona una opcion valida!\n");
+                    break;
             }
         }while(opMain != 3);
         scan.close();
