@@ -27,7 +27,7 @@ public class Campeonato {
 
         Main.scan.nextLine();
         for (Carrera c : listaCarreras) {
-            System.out.println("Carrera numero "+ (j++)); 
+            System.out.println("\nCarrera numero "+ (j++)); 
             System.out.println("Presione enter para continuar, o escriba 'exit' para salir.");
             enterKey = Main.scan.nextLine();
             if(enterKey.equalsIgnoreCase("exit")) {
@@ -47,6 +47,7 @@ public class Campeonato {
             this.equipos.get(j).sumarPuntos();
         }
         System.out.println("LOS EQUIPOS TIENEN ESTA CANTIDAD DE PUNTOS: ");
+        sortGanadores();
         for(Equipo e : this.equipos){
             System.out.println(e.getNombre() + ": " + e.getPuntos());
         }
@@ -56,6 +57,7 @@ public class Campeonato {
         int lugar = 1; 
 
         sortGanadores();
+        System.out.println("\n··· RESULTADOS DEL CAMPEONATO ···\n");
         System.out.println("Clasificacion por equipo: ");
         for (Equipo e: this.equipos) {
             System.out.println((lugar++)+". "+e.getNombre());
@@ -68,9 +70,8 @@ public class Campeonato {
             System.out.println((lugar++)+". "+p.getNombre());
         }    
         
-        System.out.println("EL EQUIPO QUE GAN� EL PREMIO " + getPremio() + " ES: "
+        System.out.println("EL EQUIPO QUE GAN� EL PREMIO " + getPremio() + " ES: "
                 + this.equipos.get(0).getNombre());
-        
         this.equipos.get(0).listarPilotos();
     }
 
@@ -80,7 +81,7 @@ public class Campeonato {
         for (int i = 0; i<n; i++) {
             Equipo index = this.equipos.get(i);
             j = i-1;
-            while (j>=0 && this.equipos.get(j).getPuntos() > index.getPuntos()) {
+            while (j>=0 && this.equipos.get(j).getPuntos() < index.getPuntos()) {
                 this.equipos.set(j+1, this.equipos.get(j));
                 j--;
             }

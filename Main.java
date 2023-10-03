@@ -142,7 +142,7 @@ public class Main{
                     for(int i = 1;i<=nEquipos;i++){
                         System.out.println("\n#### EQUIPO " +i+" ####");
 
-                        System.out.print("Nombre del equipo: ");
+                        System.out.print("\nNombre del equipo: ");
                         teamName = scan.nextLine();
                         Equipo arbTeam = new Equipo(teamName);
 
@@ -151,7 +151,7 @@ public class Main{
                         scan.nextLine();
 
                         for(int j = 1;j<=nPilotos;j++){
-                            System.out.println("- PILOTO "+j+" -");
+                            System.out.println("\n- PILOTO "+j+" -");
                             Piloto arbPilot = scanPilotData();
                             arbTeam.addPiloto(arbPilot);
                         }
@@ -178,12 +178,12 @@ public class Main{
 
                 case 2:
                     if (campeonato.getCarreras() == null) {
-                        System.out.println("El campeonato no ha empezado");
+                        System.out.println("\nEl campeonato no ha empezado");
                         break;
                     }
 
                     int opt;
-                    System.out.println("Ver carrera por: ");
+                    System.out.println("\nVer carrera por: \n");
                     System.out.println("1. Fecha");
                     System.out.println("2. Lista de Carreras corridas");
                     System.out.print("Opcion: "); 

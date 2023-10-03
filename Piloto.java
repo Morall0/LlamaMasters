@@ -40,7 +40,7 @@ public class Piloto{
         for (int i = 0; i<n; i++) {
             Piloto index = totalPilotos.get(i);
             j = i-1;
-            while (j>=0 && totalPilotos.get(j).getPuntos() > index.getPuntos()) {
+            while (j>=0 && totalPilotos.get(j).getPuntos() < index.getPuntos()) {
                 totalPilotos.set(j+1, totalPilotos.get(j));
                 j--;
             }

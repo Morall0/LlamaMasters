@@ -40,19 +40,19 @@ public class Carrera {
 		carreraRealizada();
         System.out.println("FECHA: " + this.fechaToString());
         System.out.println(this.pista.toString());
-        System.out.println("");
 		generarPosiciones();
 		int cantidadVueltas = getPista().getVueltas();
 		for(int j = 0; j < cantidadVueltas; j++) {
 			generarPosiciones();
 			System.out.printf("Vuelta %d:\n\n", j + 1);
-			imprimirPosiciones();
-
+			
 			try {
 				Thread.sleep((this.pista.getKilometros()*20)+this.pista.getCurvas()/1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			imprimirPosiciones();
 
 		}
         darPuntos();
@@ -79,9 +79,10 @@ public class Carrera {
 	}
 
 	public void imprimirPosiciones() {
-		for(int j = 0; j < this.corredores.size(); j++) {
-			String nombre = this.corredores.get(j).getNombre();
-			System.out.printf("Posición [%d]: %s\n", j + 1, nombre);
+		for(Piloto corredor : this.corredores) {
+			int posc = corredor.getPosicion();
+			String nombre = corredor.getNombre();
+			System.out.printf("Posición [%d]: %s\n", posc, nombre);
 		}
 		System.out.println();
 	}

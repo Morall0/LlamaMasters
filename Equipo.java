@@ -5,7 +5,6 @@ public class Equipo{
     private String nombre;
     private HashSet<Piloto> pilotos = new HashSet<>();
     private int puntos=0;
-    private short camp_Ganados=0;
     
     public Equipo(String nombre){
         setNombre(nombre);
@@ -52,10 +51,6 @@ public class Equipo{
         this.puntos += puntosExtra - this.puntos;
     }
     
-    public void sumarCamp(){
-        setCamp_Ganados((short)(this.camp_Ganados + 1));
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -78,13 +73,5 @@ public class Equipo{
 
     public void setPuntos(int puntos) {
         this.puntos = puntos;
-    }
-
-    public short getCamp_Ganados() {
-        return camp_Ganados;
-    }
-
-    public void setCamp_Ganados(short camp_Ganados) {
-        this.camp_Ganados = camp_Ganados;
     }
 }
