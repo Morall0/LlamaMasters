@@ -21,15 +21,6 @@ public class Piloto{
         
     }
 
-    public Piloto(String nombre, int edad, String nacionalidad, String carro, short victorias, short puntos) {
-        setNombre(nombre);
-        setEdad(edad);
-        setNacionalidad(nacionalidad);
-        setCarro(carro);
-        setVictorias(victorias);
-        setPuntos(puntos);
-    }
-
     public static void addPiloto(Piloto piloto) {
         totalPilotos.add(piloto); 
     }

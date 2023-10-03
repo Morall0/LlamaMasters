@@ -9,7 +9,7 @@ public class Carrera {
     private long digFecha;
 	private boolean realizada;
 
-	// Constructores
+	// Constructor
     	
 	public Carrera (LinkedList<Piloto> corredores, Circuito pista, int dia, int mes, int anio) {
 		setCorredores(corredores);

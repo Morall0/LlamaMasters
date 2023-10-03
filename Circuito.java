@@ -8,16 +8,7 @@ public class Circuito {
 	private short curvas;
 
 
-	// Constructores
-	
-	public Circuito(String nombre, String locacion, String tipo, short kilometros, short curvas) {
-		setNombre(nombre);
-		setLocacion(locacion);
-		setTipo(tipo);
-		setKilometros(kilometros);
-		setVueltas((short)1);
-		setCurvas(curvas);
-	}
+	// Constructor
 
 	public Circuito(String nombre, String locacion, String tipo, short kilometros, short vueltas, short curvas) {
 		setNombre(nombre);
