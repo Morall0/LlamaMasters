@@ -4,26 +4,16 @@ import java.util.Iterator;
 public class Equipo{
     private String nombre;
     private HashSet<Piloto> pilotos = new HashSet<>();
-    private int puntos=0;
+    private int puntos;
     
     public Equipo(String nombre){
         setNombre(nombre);
+        this.puntos = 0;
     }
     
     public void addPiloto(Piloto piloto){
-        pilotos.add(piloto);
+        this.pilotos.add(piloto);
         Piloto.addPiloto(piloto); // Añadiendo al total de pilotos en la Clase Piloto
-    }
-    
-    public void removePiloto(String eleccion){
-        Iterator<Piloto> iterador = pilotos.iterator();
-        while(iterador.hasNext()){
-           Piloto piloto = iterador.next();
-           if(piloto.getNombre().equals(eleccion)){
-               pilotos.remove(piloto);
-               break;
-           }
-        }
     }
     
     public void listarPilotos(){
@@ -50,7 +40,7 @@ public class Equipo{
 
         this.puntos += puntosExtra - this.puntos;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
