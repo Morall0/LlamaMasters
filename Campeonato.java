@@ -70,7 +70,7 @@ public class Campeonato {
             System.out.println((lugar++)+". "+p.getNombre());
         }    
         
-        System.out.println("EL EQUIPO QUE GAN� EL PREMIO " + getPremio() + " ES: "
+        System.out.println("/nEL EQUIPO QUE GANÓ EL PREMIO " + getPremio() + " ES: "
                 + this.equipos.get(0).getNombre());
         this.equipos.get(0).listarPilotos();
     }
